@@ -7,3 +7,4 @@ description = "A simple key-value store"
 
 
 [dependencies]
+ahash = "0.7.6"
