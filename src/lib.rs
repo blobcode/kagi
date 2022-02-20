@@ -9,18 +9,6 @@ pub struct Store {
 }
 
 impl Store {
-    /// read database file
-    pub fn open<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) -> Store {
-        let path = file.into();
-
-        let result = Store {
-            map: HashMap::default(),
-            file: path,
-        };
-
-        result
-    }
-
     /// save current state to file
     //pub fn save(&self) -> Data {}
 
@@ -35,4 +23,16 @@ impl Store {
         let result = self.map.get(&key.into()).unwrap().to_string();
         result
     }
+}
+
+/// read database file
+pub fn open<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) -> Store {
+    let path = file.into();
+
+    let result = Store {
+        map: HashMap::default(),
+        file: path,
+    };
+
+    result
 }
