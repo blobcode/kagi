@@ -1,20 +1,28 @@
 use ahash::RandomState;
-use std::error::Error;
 use std::fs;
 use std::{collections::HashMap, path::PathBuf};
 
-pub struct Data {
+/// main state struct
+pub struct Store {
     map: HashMap<String, String, RandomState>,
+    file: PathBuf,
 }
 
-impl Data {
+impl Store {
     /// read database file
-    pub fn open<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) -> Data {
-        let result = Data {
+    pub fn open<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) -> Store {
+        let path = file.into();
+
+        let result = Store {
             map: HashMap::default(),
+            file: path,
         };
+
         result
     }
+
+    /// save current state to file
+    //pub fn save(&self) -> Data {}
 
     /// insert value into database
     pub fn insert<S: Into<String>>(&mut self, key: S, value: S) {
