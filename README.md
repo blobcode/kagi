@@ -2,7 +2,7 @@
 
 A simple embedded key-value store written in rust as a learning project!
 
-## Getting Started <a name = "getting_started"></a>
+## Getting Started
 
 To install, simply add `kagi` to your `Cargo.toml`, for example
 
@@ -11,7 +11,7 @@ To install, simply add `kagi` to your `Cargo.toml`, for example
 kagi = "0.1.0"
 ```
 
-## Usage <a name = "usage"></a>
+## Usage
 
 Open a store and store a value to it.
 ```
@@ -29,3 +29,7 @@ fn main() {
 
 
 To further learn how to use kagi, take a look at the examples.
+
+## Details
+
+When opening a file, kagi will create it if it doesn't exist, and it will sync to file every 500ms by default.
