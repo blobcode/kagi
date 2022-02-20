@@ -8,7 +8,7 @@ To install, simply add `kagi` to your `Cargo.toml`, for example
 
 ```
 [dependencies]
-kagi = "0.1.0"
+kagi = "0.1.1"
 ```
 
 ## Usage
