@@ -18,12 +18,18 @@ Open a store and store a value to it.
 use kagi::open;
 
 fn main() {
+    // open db
     let mut data = open("./test.kg");
+
+    // insert value
     data.insert("test", "value");
 
     // try load
     let result = data.get("test");
     println!("{}", result);
+
+    // sync to db
+    data.save()
 }
 ```
 
