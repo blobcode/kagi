@@ -36,6 +36,7 @@ impl Store {
         result
     }
 
+    /// create new database file
     pub fn create<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) -> Self {
         // load path
         let path = file.into();
@@ -59,7 +60,7 @@ pub fn open<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) ->
     // load path
     let path = file.into();
 
-    let mut result: Store = Store::default();
+    let result: Store;
 
     // default config for bincode
     let config = config::standard();
