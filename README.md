@@ -14,6 +14,7 @@ kagi = "0.1.1"
 ## Usage
 
 Open a store and store a value to it.
+
 ```
 use kagi::open;
 
@@ -22,17 +23,16 @@ fn main() {
     let mut data = open("./test.kg");
 
     // insert value
-    data.insert("test", "value");
+    data.insert("test", vec!["value".to_string]);
 
     // try load
     let result = data.get("test");
-    println!("{}", result);
+    dbg!(result)
 
     // sync to db
     data.save()
 }
 ```
-
 
 To further learn how to use kagi, take a look at the examples.
 
