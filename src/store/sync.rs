@@ -1,6 +1,5 @@
 // ignore for now
 // run save on the db every 500ms.
-// still have to figure it out tho
 
 use std::{
     fs, thread,

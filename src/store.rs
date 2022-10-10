@@ -4,10 +4,12 @@ use std::io::Read;
 use std::io::{BufWriter, Write};
 use std::{collections::HashMap, path::PathBuf};
 
+mod sync;
+
 /// main state struct
 #[derive(Encode, Decode)]
 pub struct Store {
-    pub map: HashMap<String, String>,
+    pub map: HashMap<String, Vec<String>>,
     pub file: PathBuf,
 }
 
@@ -25,14 +27,14 @@ impl Store {
     }
 
     /// insert value into database
-    pub fn insert<S: Into<String>>(&mut self, key: S, value: S) {
+    pub fn insert<S: Into<String>, V: Into<Vec<String>>>(&mut self, key: S, value: V) {
         self.map.insert(key.into(), value.into());
     }
 
     /// retrive value from database
-    pub fn get<S: Into<String>>(&self, key: S) -> String {
+    pub fn get<S: Into<String>>(&self, key: S) -> Vec<String> {
         // read from passed hashmap
-        let result = self.map.get(&key.into()).unwrap().to_string();
+        let result = self.map.get(&key.into()).unwrap().to_vec();
         result
     }
 
@@ -92,6 +94,6 @@ pub fn open<P: Into<PathBuf> + std::convert::AsRef<std::path::Path>>(file: P) ->
         let encoded: Vec<u8> = bincode::encode_to_vec(&result, config).unwrap();
         f.write_all(&encoded).unwrap();
     }
-
+    sync::run();
     result
 }
